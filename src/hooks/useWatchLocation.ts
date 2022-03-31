@@ -7,7 +7,9 @@ const defaultOptions: PositionOptions = {
   maximumAge: 20_000,
 };
 
-const useWatchLocation = () => {
+const defaultTimeout = 1.5 * 60 * 1000; // 1,5 minutes
+
+const useWatchLocation = (timeout = defaultTimeout) => {
   // store location in state
   const [location, setLocation] = useState<GeolocationCoordinates | null>(null);
   // store error message in state
@@ -36,7 +38,7 @@ const useWatchLocation = () => {
     // Success handler for geolocation's `watchPosition` method
     const handleSuccess = throttle((pos: GeolocationPosition) => {
       setLocation(pos.coords);
-    }, 20_000);
+    }, timeout);
 
     // Error handler for geolocation's `watchPosition` method
     const handleError = (error: GeolocationPositionError) => {

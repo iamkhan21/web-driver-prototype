@@ -11,6 +11,7 @@ import { drawMarker } from "../../../utils/map-helpers";
 
 const Mapbox = () => {
   const map = useRef<Map | null>(null);
+  const isCentred = useRef<boolean>(false);
   const [mapLoaded, setMapLoaded] = useState(false);
   const { location } = useWatchLocation();
 
@@ -53,7 +54,11 @@ const Mapbox = () => {
 
     if (coordinates && map.current) {
       drawUserMarker(map.current!, coordinates);
-      map.current!.jumpTo({ center: coordinates });
+
+      if (!isCentred.current) {
+        map.current!.jumpTo({ center: coordinates });
+        isCentred.current = true;
+      }
     }
   }, [location?.latitude, location?.longitude, mapLoaded]);
 
