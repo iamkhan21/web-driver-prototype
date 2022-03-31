@@ -5,6 +5,7 @@ const Map = () => {
 
   useEffect(() => {
     (async () => {
+      await import("mapbox-gl/dist/mapbox-gl.css");
       const mapboxgl = (await import("mapbox-gl")).default;
 
       // @ts-ignore
