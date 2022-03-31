@@ -5,12 +5,10 @@ import { presetUno } from "unocss";
 import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
 const pwaOptions: Partial<VitePWAOptions> = {
-  mode: "development",
-  base: "/",
-  includeAssets: ["favicon.svg"],
   manifest: {
     name: "Driver App",
     short_name: "Driver App",
+    description: "Web version of driver app",
     theme_color: "#fff",
     icons: [
       {
@@ -22,6 +20,12 @@ const pwaOptions: Partial<VitePWAOptions> = {
         src: "/favicons/icon-512.png",
         type: "image/png",
         sizes: "512x512",
+      },
+      {
+        src: "/favicons/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any maskable",
       },
     ],
   },
