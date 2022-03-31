@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useWatchLocation from "../../../hooks/useWatchLocation";
 import {
   convertCoordinatesObjectToArray,
@@ -11,6 +11,7 @@ import { drawMarker } from "../../../utils/map-helpers";
 
 const Mapbox = () => {
   const map = useRef<Map | null>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const { location } = useWatchLocation();
 
   function drawUserMarker(map: Map, coordinates: Coordinates) {
@@ -18,46 +19,43 @@ const Mapbox = () => {
   }
 
   useEffect(() => {
-    const coordinates = getCoordinates(location);
+    (async () => {
+      await import("mapbox-gl/dist/mapbox-gl.css");
+      const mapboxgl = (await import("mapbox-gl")).default;
 
-    if (coordinates && !map.current) {
-      (async () => {
-        await import("mapbox-gl/dist/mapbox-gl.css");
-        const mapboxgl = (await import("mapbox-gl")).default;
+      // @ts-ignore
+      mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
 
-        // @ts-ignore
-        mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
+      // @ts-ignore
+      map.current = new mapboxgl.Map({
+        container: "mapbox",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [-122.667569, 45.523825], // starting position
+        zoom: 15,
+      });
 
-        // @ts-ignore
-        map.current = new mapboxgl.Map({
-          container: "mapbox",
-          style: "mapbox://styles/mapbox/streets-v11",
-          center: [-122.667569, 45.523825], // starting position
-          zoom: 15,
-        });
-
-        // @ts-ignore
-        map.current.on("load", () => {
-          map.current!.jumpTo({ center: coordinates });
-          drawUserMarker(map.current!, coordinates);
-        });
-      })();
-    }
+      // @ts-ignore
+      map.current.on("load", () => {
+        setMapLoaded(true);
+      });
+    })();
 
     // @ts-ignore
     return () => {
       map.current?.remove();
       map.current = null;
+      setMapLoaded(false);
     };
-  }, [location?.latitude, location?.longitude]);
+  }, []);
 
   useEffect(() => {
     const coordinates = getCoordinates(location);
 
     if (coordinates && map.current) {
       drawUserMarker(map.current!, coordinates);
+      map.current!.jumpTo({ center: coordinates });
     }
-  }, [location?.latitude, location?.longitude]);
+  }, [location?.latitude, location?.longitude, mapLoaded]);
 
   const accuracy = getAccuracy(location);
 
