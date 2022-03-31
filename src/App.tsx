@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import Main from "./shell/Main";
 import React from "react";
 import SideMenu from "./shell/SideMenu";
+import ReloadPrompt from "./components/shell/ReloadPrompt";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <Main />
       <SideMenu />
+      <ReloadPrompt />
       <Footer />
     </BrowserRouter>
   );
