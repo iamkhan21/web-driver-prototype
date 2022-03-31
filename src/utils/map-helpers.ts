@@ -1,18 +1,15 @@
 import { Map } from "mapbox-gl";
 
 export type PointOptions = {
-  color: string;
-  size: number;
+  color?: string;
+  size?: number;
 };
 
 export function drawMarker(
   map: Map,
   coordinates: number[],
   name: string,
-  options: PointOptions = {
-    color: "#f30",
-    size: 5,
-  }
+  { color = "#f30", size = 5 }: PointOptions
 ) {
   const collection = {
     type: "FeatureCollection",
@@ -41,8 +38,8 @@ export function drawMarker(
         data: collection,
       },
       paint: {
-        "circle-radius": options.size,
-        "circle-color": options.color,
+        "circle-radius": size,
+        "circle-color": color,
       },
     });
   }

@@ -16,7 +16,9 @@ const Mapbox = () => {
   const { location } = useWatchLocation();
 
   function drawUserMarker(map: Map, coordinates: Coordinates) {
-    drawMarker(map, convertCoordinatesObjectToArray(coordinates), "user");
+    drawMarker(map, convertCoordinatesObjectToArray(coordinates), "user", {
+      size: 10,
+    });
   }
 
   useEffect(() => {
@@ -67,7 +69,7 @@ const Mapbox = () => {
   return (
     <section>
       <p>Accuracy: {Math.round(accuracy || 0) / 1_000} km</p>
-      <section id="mapbox" style={{ height: "70vh" }}>
+      <section id="mapbox" style={{ height: "75vh" }}>
         <h3>Loading your location</h3>
       </section>
     </section>

@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { throttle } from "../utils/helpers";
 
-const defaultOptions: PositionOptions = {
-  enableHighAccuracy: false,
-  timeout: 20_000,
-  maximumAge: 20_000,
-};
-
 const defaultTimeout = 1.5 * 60 * 1000; // 1,5 minutes
+
+const defaultOptions: PositionOptions = {
+  enableHighAccuracy: true,
+  timeout: defaultTimeout,
+  maximumAge: defaultTimeout,
+};
 
 const useWatchLocation = (timeout = defaultTimeout) => {
   // store location in state
