@@ -18,7 +18,7 @@ specifiers:
   unocss: 0.30.8
   vite: 2.9.1
   vite-plugin-pwa: 0.11.13
-  workbox-window: ^6.5.2
+  workbox-window: 6.5.2
 
 dependencies:
   '@emotion/react': 11.8.2_00a11a054056e3746b551a83b9229751

@@ -8,13 +8,15 @@ import ReloadPrompt from "./components/shell/ReloadPrompt";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Main />
-      <SideMenu />
+    <>
+      <BrowserRouter>
+        <Header />
+        <Main />
+        <SideMenu />
+        <Footer />
+      </BrowserRouter>
       <ReloadPrompt />
-      <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
