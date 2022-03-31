@@ -1,11 +1,11 @@
 import React from "react";
-import Map from "../../components/Home/Map";
+import Mapbox from "../../components/Home/Mapbox";
 
 const Home = () => {
   return (
     <article>
-      <h2>Home</h2>
-      <Map />
+      <h3>Geolocation example</h3>
+      <Mapbox />
     </article>
   );
 };

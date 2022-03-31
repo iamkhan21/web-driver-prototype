@@ -28,6 +28,6 @@
     "unocss": "0.30.8",
     "vite": "2.9.1",
     "vite-plugin-pwa": "0.11.13",
-    "workbox-window": "^6.5.2"
+    "workbox-window": "6.5.2"
   }
 }
