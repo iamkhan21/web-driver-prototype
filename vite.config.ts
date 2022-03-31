@@ -10,6 +10,10 @@ const pwaOptions: Partial<VitePWAOptions> = {
     short_name: "Driver App",
     description: "Web version of driver app",
     theme_color: "#fff",
+    background_color: "#fff",
+    display: "standalone",
+    lang: "en",
+    scope: "/",
     icons: [
       {
         src: "/favicons/icon-192.png",
