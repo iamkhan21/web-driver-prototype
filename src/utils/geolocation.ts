@@ -5,7 +5,8 @@ import {
 } from "@application/geolocation/types";
 
 export function getGeolocation(): Promise<GeolocationCoordinates> {
-  const timeout = 25_000;
+  const timeout = 5_000;
+
   const options = {
     enableHighAccuracy: true,
     timeout: timeout,

@@ -12,6 +12,7 @@ import { Coordinates } from "@application/geolocation/types";
 
 const Mapbox = () => {
   const map = useRef<Map | null>(null);
+  const isCentered = useRef(false);
   const location = useStore($userGeolocation);
 
   function drawUserMarker(map: Map, coordinates: Coordinates) {
@@ -42,6 +43,7 @@ const Mapbox = () => {
       map.current.on("load", () => {
         if (coordinates) {
           drawUserMarker(map.current!, coordinates);
+          isCentered.current = true;
         }
       });
     })();
@@ -58,12 +60,17 @@ const Mapbox = () => {
 
     if (coordinates && map.current) {
       drawUserMarker(map.current!, coordinates);
-      map.current!.flyTo({ center: coordinates });
+
+      if (isCentered.current) {
+        map.current!.flyTo({ center: coordinates });
+      } else {
+        map.current!.jumpTo({ center: coordinates });
+        isCentered.current = true;
+      }
     }
   }, [location?.latitude, location?.longitude]);
 
   const accuracy = getAccuracy(location);
-
   return (
     <section>
       <p>Accuracy: {Math.round(accuracy || 0) / 1_000} km</p>
