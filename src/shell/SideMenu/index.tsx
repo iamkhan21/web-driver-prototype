@@ -9,6 +9,8 @@ import { useSideMenuContext } from "@shell/SideMenu/side-menu.controller";
 import { Link, useLocation } from "react-router-dom";
 import { ViewRelations } from "@/configs/routes";
 import Box from "@mui/material/Box";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 const SideMenu = () => {
   const { state, close } = useSideMenuContext();
@@ -29,11 +31,17 @@ const SideMenu = () => {
       <section className="min-w-xs">
         <Box
           sx={{
-            paddingBlock: "1rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "1rem",
             backgroundColor: "primary.main",
           }}
         >
-          <h2 className="px-4 text-white">Menu</h2>
+          <h2 className="text-white">Menu</h2>
+          <IconButton aria-label="close menu" onClick={close}>
+            <CloseIcon className="text-white" />
+          </IconButton>
         </Box>
         <nav className="py-2">
           <List>
