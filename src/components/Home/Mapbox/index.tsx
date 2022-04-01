@@ -79,7 +79,7 @@ const Mapbox = () => {
       <p>Accuracy: {Math.round(accuracy || 0) / 1_000} km</p>
       <br />
       <section id="mapbox" style={{ height: "70vh" }}>
-        <h3>Loading your location</h3>
+        <p>Loading your location...</p>
       </section>
     </section>
   );

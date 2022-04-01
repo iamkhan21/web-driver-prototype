@@ -10,8 +10,11 @@ import {
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { useState } from "react";
 
 function ReloadPrompt() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     offlineReady: [offlineReady, setOfflineReady],
     needRefresh: [needRefresh, setNeedRefresh],
@@ -26,10 +29,15 @@ function ReloadPrompt() {
     },
   });
 
-  const close = () => {
+  function close() {
     setOfflineReady(false);
     setNeedRefresh(false);
-  };
+  }
+
+  function reloadApp() {
+    setIsLoading(true);
+    updateServiceWorker(true);
+  }
 
   if (offlineReady)
     return (
@@ -51,7 +59,7 @@ function ReloadPrompt() {
       />
     );
 
-  if (needRefresh)
+  if (needRefresh) {
     return (
       <Dialog
         open={true}
@@ -59,20 +67,23 @@ function ReloadPrompt() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Application updates</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Application update</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            New content available, <br /> click on reload button to update.
+          <DialogContentText id="alert-dialog-description" className="min-w-xs">
+            Newest version available, <br /> click on reload button to update.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={close}>Close</Button>
-          <Button onClick={() => updateServiceWorker(true)} autoFocus>
-            Reload
+          <Button onClick={close} disabled={isLoading}>
+            Close
+          </Button>
+          <Button onClick={reloadApp} autoFocus disabled={isLoading}>
+            {isLoading ? "Updating..." : "Reload"}
           </Button>
         </DialogActions>
       </Dialog>
     );
+  }
 
   return null;
 }

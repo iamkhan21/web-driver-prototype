@@ -27,7 +27,7 @@ const ErrorDialog = () => {
       >
         <DialogTitle id="alert-dialog-title">{error.type}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" className="min-w-xs">
             {error.message}
           </DialogContentText>
         </DialogContent>
