@@ -42,10 +42,11 @@ const Mapbox = () => {
 
       // @ts-ignore
       map.current.on("load", () => {
+        setIsMapLoaded(true);
+
         if (coordinates) {
           drawUserMarker(map.current!, coordinates);
           isCentered.current = true;
-          setIsMapLoaded(true);
         }
       });
     })();
