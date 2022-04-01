@@ -1,11 +1,29 @@
-export type Longitude = number;
-export type Latitude = number;
-export type LocationAccuracy = number;
+import {
+  Coordinates,
+  CoordinatesArray,
+  LocationAccuracy,
+} from "@application/geolocation/types";
 
-export type Coordinates = {
-  lng: Longitude;
-  lat: Latitude;
-};
+export function getGeolocation(): Promise<GeolocationCoordinates> {
+  const timeout = 25_000;
+  const options = {
+    enableHighAccuracy: true,
+    timeout: timeout,
+    maximumAge: timeout,
+  };
+
+  return new Promise((resolve, reject) => {
+    function success({ coords }: GeolocationPosition) {
+      resolve(coords);
+    }
+
+    function error(err: GeolocationPositionError) {
+      reject(err);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  });
+}
 
 export function getCoordinates(
   location: GeolocationCoordinates | null
@@ -20,8 +38,6 @@ export function getAccuracy(
   if (!location) return null;
   return location.accuracy;
 }
-
-export type CoordinatesArray = [Longitude, Latitude];
 
 export function convertCoordinatesObjectToArray(
   coordinates: Coordinates

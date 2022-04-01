@@ -1,23 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import useWatchLocation from "../../../hooks/useWatchLocation";
+import React, { useEffect, useRef } from "react";
 import {
   convertCoordinatesObjectToArray,
-  Coordinates,
   getAccuracy,
   getCoordinates,
-} from "../../../utils/geolocation";
+} from "@utils/geolocation";
 import { Map } from "mapbox-gl";
-import { drawMarker } from "../../../utils/map-helpers";
+import { drawMarker } from "@utils/map-helpers";
+import { useStore } from "effector-react";
+import { $userGeolocation } from "@application/geolocation";
+import { Coordinates } from "@application/geolocation/types";
 
 const Mapbox = () => {
   const map = useRef<Map | null>(null);
-  const isCentred = useRef<boolean>(false);
-  const [mapLoaded, setMapLoaded] = useState(false);
-  const { location } = useWatchLocation();
+  const location = useStore($userGeolocation);
 
   function drawUserMarker(map: Map, coordinates: Coordinates) {
     drawMarker(map, convertCoordinatesObjectToArray(coordinates), "user", {
-      size: 10,
+      size: 5,
     });
   }
 
@@ -29,17 +28,21 @@ const Mapbox = () => {
       // @ts-ignore
       mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
 
+      const coordinates = getCoordinates(location);
+
       // @ts-ignore
       map.current = new mapboxgl.Map({
         container: "mapbox",
         style: "mapbox://styles/mapbox/streets-v11",
-        center: [-122.667569, 45.523825], // starting position
+        center: coordinates || [-122.667569, 45.523825], // starting position
         zoom: 15,
       });
 
       // @ts-ignore
       map.current.on("load", () => {
-        setMapLoaded(true);
+        if (coordinates) {
+          drawUserMarker(map.current!, coordinates);
+        }
       });
     })();
 
@@ -47,7 +50,6 @@ const Mapbox = () => {
     return () => {
       map.current?.remove();
       map.current = null;
-      setMapLoaded(false);
     };
   }, []);
 
@@ -56,20 +58,17 @@ const Mapbox = () => {
 
     if (coordinates && map.current) {
       drawUserMarker(map.current!, coordinates);
-
-      if (!isCentred.current) {
-        map.current!.jumpTo({ center: coordinates });
-        isCentred.current = true;
-      }
+      map.current!.flyTo({ center: coordinates });
     }
-  }, [location?.latitude, location?.longitude, mapLoaded]);
+  }, [location?.latitude, location?.longitude]);
 
   const accuracy = getAccuracy(location);
 
   return (
     <section>
       <p>Accuracy: {Math.round(accuracy || 0) / 1_000} km</p>
-      <section id="mapbox" style={{ height: "75vh" }}>
+      <br />
+      <section id="mapbox" style={{ height: "70vh" }}>
         <h3>Loading your location</h3>
       </section>
     </section>

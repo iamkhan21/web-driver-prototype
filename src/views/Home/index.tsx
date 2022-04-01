@@ -1,5 +1,5 @@
 import React from "react";
-import Mapbox from "../../components/Home/Mapbox";
+import Mapbox from "@components/Home/Mapbox";
 
 const Home = () => {
   return (
