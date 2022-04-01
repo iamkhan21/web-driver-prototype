@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   convertCoordinatesObjectToArray,
   getAccuracy,
@@ -13,7 +13,7 @@ import { Coordinates } from "@application/geolocation/types";
 const Mapbox = () => {
   const map = useRef<Map | null>(null);
   const isCentered = useRef(false);
-  const isMapLoaded = useRef(false);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
   const location = useStore($userGeolocation);
 
   function drawUserMarker(map: Map, coordinates: Coordinates) {
@@ -45,7 +45,7 @@ const Mapbox = () => {
         if (coordinates) {
           drawUserMarker(map.current!, coordinates);
           isCentered.current = true;
-          isMapLoaded.current = true;
+          setIsMapLoaded(true);
         }
       });
     })();
@@ -60,7 +60,7 @@ const Mapbox = () => {
   useEffect(() => {
     const coordinates = getCoordinates(location);
 
-    if (coordinates && map.current && isMapLoaded.current) {
+    if (coordinates && map.current && isMapLoaded) {
       drawUserMarker(map.current!, coordinates);
 
       if (isCentered.current) {
@@ -70,7 +70,7 @@ const Mapbox = () => {
         isCentered.current = true;
       }
     }
-  }, [location?.latitude, location?.longitude]);
+  }, [location?.latitude, location?.longitude, isMapLoaded]);
 
   const accuracy = getAccuracy(location);
   return (
