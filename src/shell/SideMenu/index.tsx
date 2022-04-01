@@ -1,10 +1,20 @@
 import React from "react";
-import Drawer from "@mui/material/Drawer";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import InfoIcon from "@mui/icons-material/Info";
+import { useSideMenuContext } from "@shell/SideMenu/side-menu.controller";
+import { Link } from "react-router-dom";
 
 const SideMenu = () => {
+  const { state, close, open } = useSideMenuContext();
   return (
-    <Drawer
-      open={false}
+    <SwipeableDrawer
+      open={state}
       variant="temporary"
       PaperProps={{ style: { position: "absolute" } }}
       BackdropProps={{ style: { position: "absolute" } }}
@@ -12,17 +22,35 @@ const SideMenu = () => {
         container: document.getElementById("root"),
         style: { position: "absolute" },
       }}
+      onClose={close}
+      onOpen={open}
     >
-      <section className="w-full max-w-xs px-4 py-6">
-        <h2>Menu</h2>
-        <nav className="flex flex-col">
-          <p>dfsgsd</p>
-          <p>dfsgsd</p>
-          <p>dfsgsd</p>
-          <p>dfsgsd</p>
-        </nav>
+      <section className="min-w-xs py-6">
+        <h2 className="px-4">Menu</h2>
+        <List>
+          <ListItem disablePadding>
+            <Link className="w-full" onClick={close} to="/">
+              <ListItemButton>
+                <ListItemIcon>
+                  <LocationOnIcon />
+                </ListItemIcon>
+                <ListItemText primary="Geolocation tracking" />
+              </ListItemButton>{" "}
+            </Link>
+          </ListItem>
+          <ListItem disablePadding>
+            <Link className="w-full" onClick={close} to="/about">
+              <ListItemButton>
+                <ListItemIcon>
+                  <InfoIcon />
+                </ListItemIcon>
+                <ListItemText primary="About" />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        </List>
       </section>
-    </Drawer>
+    </SwipeableDrawer>
   );
 };
 

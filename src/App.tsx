@@ -7,6 +7,7 @@ import SideMenu from "@shell/SideMenu";
 import ReloadPrompt from "@components/shell/ReloadPrompt";
 import ErrorDialog from "@components/shell/ErrorDialog";
 import { initApp } from "@application/app";
+import { SideMenuProvider } from "@shell/SideMenu/side-menu.controller";
 
 function App() {
   useEffect(() => {
@@ -16,9 +17,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
+        <SideMenuProvider>
+          <Header />
+          <SideMenu />
+        </SideMenuProvider>
         <Main />
-        <SideMenu />
         <Footer />
       </BrowserRouter>
       <ErrorDialog />

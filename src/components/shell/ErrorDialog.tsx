@@ -1,14 +1,12 @@
 import React from "react";
 import { useStore } from "effector-react";
 import { $dialogError, resetDialogError } from "@application/app";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
 
 const ErrorDialog = () => {
   const error = useStore($dialogError);
