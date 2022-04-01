@@ -5,14 +5,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import InfoIcon from "@mui/icons-material/Info";
 import { useSideMenuContext } from "@shell/SideMenu/side-menu.controller";
-import { Link } from "react-router-dom";
-import { ViewNames, ViewUrls } from "@/configs/routes";
+import { Link, useLocation } from "react-router-dom";
+import { ViewRelations } from "@/configs/routes";
+import Box from "@mui/material/Box";
 
 const SideMenu = () => {
-  const { state, close, open } = useSideMenuContext();
+  const { state, close } = useSideMenuContext();
+  const { pathname } = useLocation();
+
   return (
     <Drawer
       open={state}
@@ -25,38 +26,33 @@ const SideMenu = () => {
       }}
       onClose={close}
     >
-      <section className="min-w-xs py-6">
-        <h2 className="px-4">Menu</h2>
-        <List>
-          <ListItem disablePadding>
-            <Link
-              className="w-full no-underline text-current"
-              onClick={close}
-              to={ViewUrls.HOME}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <LocationOnIcon />
-                </ListItemIcon>
-                <ListItemText primary={ViewNames.HOME} />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-          <ListItem disablePadding>
-            <Link
-              className="w-full no-underline text-current"
-              onClick={close}
-              to={ViewUrls.ABOUT}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <InfoIcon />
-                </ListItemIcon>
-                <ListItemText primary={ViewNames.ABOUT} />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        </List>
+      <section className="min-w-xs">
+        <Box
+          sx={{
+            paddingBlock: "1rem",
+            backgroundColor: "primary.main",
+          }}
+        >
+          <h2 className="px-4 text-white">Menu</h2>
+        </Box>
+        <nav className="py-2">
+          <List>
+            {Object.entries(ViewRelations).map(([path, data]) => (
+              <ListItem key={path} disablePadding>
+                <Link
+                  className="w-full no-underline text-current"
+                  onClick={close}
+                  to={path}
+                >
+                  <ListItemButton selected={pathname === path}>
+                    <ListItemIcon>{data.icon}</ListItemIcon>
+                    <ListItemText primary={data.name} />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </nav>
       </section>
     </Drawer>
   );
