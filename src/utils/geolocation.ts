@@ -15,12 +15,10 @@ export function getGeolocation(): Promise<GeolocationCoordinates> {
 
   return new Promise((resolve, reject) => {
     function success({ coords }: GeolocationPosition) {
-      console.log(22, coords);
       resolve(coords);
     }
 
     function error(err: GeolocationPositionError) {
-      console.log(33, err);
       reject(err);
     }
 

@@ -1,14 +1,15 @@
-import { forward, fromObservable } from "effector";
-import { initApp } from "@application/app/index";
+import { forward } from "effector";
+import {
+  $dialogError,
+  initApp,
+  resetDialogError,
+  setDialogError,
+} from "@application/app/index";
 import { updateUserGeolocation } from "@application/geolocation";
-import { interval } from "rxjs";
 
 forward({
   from: initApp,
   to: [updateUserGeolocation],
 });
 
-forward({
-  from: fromObservable(interval(30_000)),
-  to: updateUserGeolocation,
-});
+$dialogError.reset(resetDialogError).on(setDialogError, (_, error) => error);

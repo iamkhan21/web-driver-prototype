@@ -5,7 +5,7 @@ import Footer from "@shell/Footer";
 import Main from "@shell/Main";
 import SideMenu from "@shell/SideMenu";
 import ReloadPrompt from "@components/shell/ReloadPrompt";
-import Geolocation from "@components/shared/Geolocation";
+import ErrorDialog from "@components/shell/ErrorDialog";
 import { initApp } from "@application/app";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <SideMenu />
         <Footer />
       </BrowserRouter>
-      <Geolocation />
+      <ErrorDialog />
       <ReloadPrompt />
     </>
   );

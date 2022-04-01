@@ -1,4 +1,4 @@
-import { forward } from "effector";
+import { forward, fromObservable } from "effector";
 import {
   $userGeolocation,
   resetUserGeolocation,
@@ -7,15 +7,28 @@ import {
 } from "@application/geolocation/index";
 import { of } from "await-of";
 import { getGeolocation } from "@utils/geolocation";
+import { interval } from "rxjs";
+import { setDialogError } from "@application/app";
+import { DialogError, DialogErrors } from "@application/app/types";
 
 updateUserGeolocationFx.use(async () => {
   const [location, err] = await of(getGeolocation());
 
-  if (err) throw err;
+  if (err) {
+    const error = new DialogError(
+      DialogErrors.Geolocation,
+      (err as Error).message
+    );
+    setDialogError(error);
+    throw error;
+  }
 
-  if (!location) throw new Error("Can't get geolocation");
+  return location!;
+});
 
-  return location;
+forward({
+  from: fromObservable(interval(30_000)),
+  to: updateUserGeolocationFx,
 });
 
 forward({
