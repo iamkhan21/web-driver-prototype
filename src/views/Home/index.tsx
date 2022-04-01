@@ -3,8 +3,7 @@ import Mapbox from "@components/Home/Mapbox";
 
 const Home = () => {
   return (
-    <article>
-      <h3>Geolocation tracking</h3>
+    <article className="content">
       <Mapbox />
     </article>
   );

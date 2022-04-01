@@ -4,8 +4,10 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSideMenuContext } from "@shell/SideMenu/side-menu.controller";
+import { useViewName } from "@hooks/useViewName";
 
 const Header = () => {
+  const viewName = useViewName();
   const { open } = useSideMenuContext();
 
   return (
@@ -21,7 +23,7 @@ const Header = () => {
         >
           <MenuIcon />
         </IconButton>
-        <h2>Home</h2>
+        <h2>{viewName}</h2>
       </Toolbar>
     </AppBar>
   );

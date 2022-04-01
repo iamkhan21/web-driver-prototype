@@ -76,9 +76,8 @@ const Mapbox = () => {
   const accuracy = getAccuracy(location);
   return (
     <section>
-      <p>Accuracy: {Math.round(accuracy || 0) / 1_000} km</p>
-      <br />
-      <section id="mapbox" style={{ height: "70vh" }}>
+      <p className="py-2">Accuracy: {Math.round(accuracy || 0)} meters</p>
+      <section id="mapbox" style={{ height: "75vh" }}>
         <p>Loading your location...</p>
       </section>
     </section>
