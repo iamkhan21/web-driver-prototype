@@ -60,13 +60,13 @@ const buildDate = new Date().toLocaleString("en-GB", {
 export default defineConfig({
   plugins: [
     react({
-        babel: {
-            plugins: ["effector/babel-plugin"],
-            // Use .babelrc files
-            babelrc: true,
-            // Use babel.config.js files
-            configFile: true,
-        },
+      babel: {
+        plugins: ["effector/babel-plugin"],
+        // Use .babelrc files
+        babelrc: true,
+        // Use babel.config.js files
+        configFile: true,
+      },
     }),
     VitePWA(pwaOptions),
     Unocss({

@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { $dialogError, resetDialogError } from "@application/app";
+import { $dialogError, resetDialogError } from "@application/errors";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -25,7 +25,10 @@ const ErrorDialog = () => {
       >
         <DialogTitle id="alert-dialog-title">{error.type}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description" className="min-w-xs">
+          <DialogContentText
+            id="alert-dialog-description"
+            className="w-full max-w-xs"
+          >
             {error.message}
           </DialogContentText>
         </DialogContent>

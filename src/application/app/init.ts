@@ -1,15 +1,7 @@
 import { forward } from "effector";
-import {
-  $dialogError,
-  initApp,
-  resetDialogError,
-  setDialogError,
-} from "@application/app/index";
-import { updateUserGeolocation } from "@application/geolocation";
+import { initApp } from "@application/app/index";
 
 forward({
   from: initApp,
-  to: [updateUserGeolocation],
+  to: [],
 });
-
-$dialogError.reset(resetDialogError).on(setDialogError, (_, error) => error);
