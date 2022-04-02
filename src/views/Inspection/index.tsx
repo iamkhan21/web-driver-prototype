@@ -47,7 +47,7 @@ const Inspection = () => {
         <video width="100%" ref={video} autoPlay />
 
         <section className="absolute inset-0 p-2 flex items-center justify-center">
-          <img width="100%" src="/images/car.svg" alt="" />
+          <img width="100%" src="/images/car-side.svg" alt="" />
         </section>
 
         <Button
