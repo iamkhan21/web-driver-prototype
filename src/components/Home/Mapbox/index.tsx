@@ -9,6 +9,7 @@ import { drawMarker } from "@utils/map-helpers";
 import { useStore } from "effector-react";
 import { $userGeolocation } from "@application/geolocation";
 import { Coordinates } from "@application/geolocation/types";
+import { formatNumberToHR } from "@utils/formatters";
 
 const Mapbox = () => {
   const map = useRef<Map | null>(null);
@@ -76,9 +77,14 @@ const Mapbox = () => {
   const accuracy = getAccuracy(location);
   return (
     <section>
-      <p className="py-2">Accuracy: {Math.round(accuracy || 0)} meters</p>
-      <section id="mapbox" style={{ height: "75vh" }}>
-        <p>Loading your location...</p>
+      <p className="py-2">
+        Accuracy: {formatNumberToHR(Math.round(accuracy || 0))} meters
+      </p>
+      <section
+        id="mapbox"
+        style={{ height: "75vh", backgroundColor: "#f2f2f2" }}
+      >
+        <p className="p-2">Loading map...</p>
       </section>
     </section>
   );
