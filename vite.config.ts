@@ -14,9 +14,9 @@ const themeColor = "#1976d2";
 const pwaOptions: Partial<VitePWAOptions> = {
   includeAssets: ["images/*"],
   manifest: {
-    name: "Driver App",
-    short_name: "Driver App",
-    description: "Web version of driver app",
+    name: "Fastly Driver",
+    short_name: "Fastly Driver",
+    description: "Fastly Driver - driver app for Fastly Roadside Assistance",
     theme_color: themeColor,
     background_color: themeColor,
     display: "standalone",
