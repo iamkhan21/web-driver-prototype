@@ -11,11 +11,19 @@ const Scanner = () => {
     setIsScannerOpen(false);
   }
 
+  function closeScanner() {
+    setIsScannerOpen(false);
+  }
+
+  function openScanner() {
+    setIsScannerOpen(true);
+  }
+
   return (
     <article className="content">
       <section className="flex items-center justify-between">
         <h3>QR code scanner</h3>
-        <Button variant="contained" onClick={() => setIsScannerOpen(true)}>
+        <Button variant="contained" onClick={openScanner}>
           Open scanner
         </Button>
       </section>
@@ -26,7 +34,7 @@ const Scanner = () => {
           <p>{scanned.current}</p>
         </section>
       )}
-      {isScannerOpen && <QRScanner onScan={onScan} />}
+      {isScannerOpen && <QRScanner onClose={closeScanner} onScan={onScan} />}
     </article>
   );
 };

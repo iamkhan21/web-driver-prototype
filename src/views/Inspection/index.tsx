@@ -67,6 +67,10 @@ const Inspection = () => {
     setIsCameraOpen(true);
   };
 
+  const closeCamera = () => {
+    setIsCameraOpen(false);
+  };
+
   const onPhoto = (photoUrl: string) => {
     if (activeStep > 3) {
       photos.current[photos.current.length] = photoUrl;
@@ -151,7 +155,7 @@ const Inspection = () => {
       {isCameraOpen && (
         <Camera
           onPhoto={onPhoto}
-          onClose={() => void 5}
+          onClose={closeCamera}
           maskImage={stepMask[activeStep] || ""}
         />
       )}

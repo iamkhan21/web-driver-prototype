@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useRef } from "react";
 import Button from "@mui/material/Button";
 import "./style.pcss";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 type Props = {
   maskImage?: string;
@@ -8,7 +10,7 @@ type Props = {
   onClose: () => void;
 };
 
-const Camera: FC<Props> = ({ onPhoto, maskImage }) => {
+const Camera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
   const alive = useRef(true);
   const stream = useRef<MediaStream>();
   const video = useRef<HTMLVideoElement>(null);
@@ -81,6 +83,15 @@ const Camera: FC<Props> = ({ onPhoto, maskImage }) => {
       >
         Take a picture
       </Button>
+
+      <IconButton
+        color="warning"
+        className="!absolute top-2 right-2"
+        aria-label="close"
+        onClick={onClose}
+      >
+        <CloseIcon />
+      </IconButton>
       <canvas ref={canvas} className="hidden" />
     </section>
   );

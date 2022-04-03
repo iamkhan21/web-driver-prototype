@@ -1,11 +1,14 @@
 import React, { FC, useEffect, useRef } from "react";
 import QrScanner from "qr-scanner";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 type Props = {
   onScan: (scannedInfo: string) => void;
+  onClose: () => void;
 };
 
-const QRScanner: FC<Props> = ({ onScan }) => {
+const QRScanner: FC<Props> = ({ onScan, onClose }) => {
   const alive = useRef(true);
   const qrScanner = useRef<QrScanner>();
   const video = useRef<HTMLVideoElement>(null);
@@ -38,8 +41,16 @@ const QRScanner: FC<Props> = ({ onScan }) => {
   }, []);
 
   return (
-    <section className="absolute inset-0 bg-black">
+    <section className="fixed inset-0 z-1200 flex items-center justify-center overflow-y-hidden bg-black">
       <video width="100%" ref={video} />
+      <IconButton
+        color="warning"
+        className="!absolute top-2 right-2"
+        aria-label="close"
+        onClick={onClose}
+      >
+        <CloseIcon />
+      </IconButton>
     </section>
   );
 };
