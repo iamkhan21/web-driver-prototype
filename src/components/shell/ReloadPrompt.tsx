@@ -67,8 +67,13 @@ function ReloadPrompt() {
       >
         <DialogTitle id="alert-dialog-title">Application update</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description" className="min-w-xs">
-            Newest version available, <br /> click on reload button to update.
+          <DialogContentText
+            id="alert-dialog-description"
+            className="w-full max-w-xs"
+          >
+            Newest version available,
+            <br />
+            click on reload button to update.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
