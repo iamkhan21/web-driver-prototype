@@ -8,8 +8,7 @@ import ReloadPrompt from "@components/shell/ReloadPrompt";
 import ErrorDialog from "@components/shell/ErrorDialog";
 import { initApp } from "@application/app";
 import { SideMenuProvider } from "@shell/SideMenu/side-menu.controller";
-
-// import Geolocation from "@components/shell/Geolocation";
+import Geolocation from "@components/shell/Geolocation";
 
 function App() {
   useEffect(() => {
@@ -27,7 +26,7 @@ function App() {
         <Footer />
         <ErrorDialog />
       </BrowserRouter>
-      {/*<Geolocation />*/}
+      <Geolocation />
       <ReloadPrompt />
     </>
   );
