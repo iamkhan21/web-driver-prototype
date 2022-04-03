@@ -5,7 +5,7 @@ import StepLabel from "@mui/material/StepLabel";
 import StepContent from "@mui/material/StepContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Camera from "@components/shell/Camera";
+import Camera from "@components/shared/Camera";
 
 type InspectionStep = {
   label: string;

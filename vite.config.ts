@@ -12,6 +12,7 @@ import tsconfig from "./tsconfig.json";
 const themeColor = "#1976d2";
 
 const pwaOptions: Partial<VitePWAOptions> = {
+  includeAssets: ["images/*"],
   manifest: {
     name: "Driver App",
     short_name: "Driver App",
@@ -23,12 +24,12 @@ const pwaOptions: Partial<VitePWAOptions> = {
     scope: "/",
     icons: [
       {
-        src: "/favicons/icon-192.png",
+        src: "favicons/icon-192.png",
         type: "image/png",
         sizes: "192x192",
       },
       {
-        src: "/favicons/icon-512.png",
+        src: "favicons/icon-512.png",
         type: "image/png",
         sizes: "512x512",
       },
