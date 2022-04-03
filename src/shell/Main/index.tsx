@@ -11,7 +11,7 @@ const NotFound = React.lazy(() => import("@views/NotFound"));
 
 const Main = () => {
   return (
-    <main className="relative">
+    <main className="">
       <React.Suspense fallback={<ComponentLoader />}>
         <Routes>
           <Route path={ViewUrls.HOME} element={<Home />} />
