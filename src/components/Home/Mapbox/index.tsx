@@ -12,6 +12,7 @@ import { Coordinates } from "@application/geolocation/types";
 import { formatNumberToHR } from "@utils/formatters";
 
 const Mapbox = () => {
+  const alive = useRef(true);
   const map = useRef<Map | null>(null);
   const isCentered = useRef(false);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -24,9 +25,13 @@ const Mapbox = () => {
   }
 
   useEffect(() => {
+    alive.current = true;
+
     (async () => {
       await import("mapbox-gl/dist/mapbox-gl.css");
       const mapboxgl = (await import("mapbox-gl")).default;
+
+      if (!alive.current) return;
 
       // @ts-ignore
       mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
@@ -54,6 +59,7 @@ const Mapbox = () => {
 
     // @ts-ignore
     return () => {
+      alive.current = false;
       map.current?.remove();
       map.current = null;
     };
