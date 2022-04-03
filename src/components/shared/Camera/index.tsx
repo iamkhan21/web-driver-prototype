@@ -9,10 +9,18 @@ type Props = {
 };
 
 const Camera: FC<Props> = ({ onPhoto, maskImage }) => {
+  const alive = useRef(true);
+  const stream = useRef<MediaStream>();
   const video = useRef<HTMLVideoElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
 
+  function stopStream() {
+    stream.current?.getTracks().forEach((track) => track.stop());
+  }
+
   useEffect(() => {
+    alive.current = true;
+
     if (
       "mediaDevices" in navigator &&
       "getUserMedia" in navigator.mediaDevices
@@ -25,12 +33,23 @@ const Camera: FC<Props> = ({ onPhoto, maskImage }) => {
             },
           },
         })
-        .then((stream) => {
+        .then((str) => {
+          stream.current = str;
+
+          if (!alive.current) {
+            return stopStream();
+          }
+
           if (video.current) {
-            video.current.srcObject = stream;
+            video.current.srcObject = str;
           }
         });
     }
+
+    return () => {
+      alive.current = false;
+      stopStream();
+    };
   }, []);
 
   const takePicture = () => {
