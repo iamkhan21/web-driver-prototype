@@ -20,6 +20,14 @@ const Camera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
     stream.current?.getTracks().forEach((track) => track.stop());
   }
 
+  function turnOnTorch() {
+    const track = stream.current?.getTracks()[0];
+    track?.applyConstraints({
+      // @ts-ignore
+      advanced: [{ torch: true }],
+    });
+  }
+
   useEffect(() => {
     alive.current = true;
 
@@ -31,7 +39,7 @@ const Camera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
         .getUserMedia({
           video: {
             facingMode: {
-              exact: "environment",
+              ideal: "environment",
             },
           },
         })
