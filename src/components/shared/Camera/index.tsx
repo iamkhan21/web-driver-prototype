@@ -80,7 +80,7 @@ const Camera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
         onClick={takePicture}
         className="!absolute bottom-7.5 mx-auto w-12rem"
         variant="contained"
-        size='large'
+        size="large"
       >
         Take a picture
       </Button>

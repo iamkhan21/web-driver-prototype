@@ -42,7 +42,9 @@ const QRScanner: FC<Props> = ({ onScan, onClose }) => {
 
   return (
     <section className="fixed inset-0 z-1200 flex items-center justify-center bg-black">
-      <video className="w-full" ref={video} />
+      <section className="flex items-center justify-center max-h-80vh overflow-y-hidden">
+        <video className="w-full" ref={video} />
+      </section>
       <IconButton
         color="warning"
         className="!absolute top-2 right-2"

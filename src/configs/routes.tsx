@@ -3,12 +3,14 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import InfoIcon from "@mui/icons-material/Info";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 
 export enum ViewUrls {
   HOME = "/",
   SCANNER = "/scanner",
   INSPECTION = "/inspection",
   ABOUT = "/about",
+  DOCUMENTS = "/documents",
 }
 
 export enum ViewNames {
@@ -16,6 +18,7 @@ export enum ViewNames {
   SCANNER = "QR code scanner",
   INSPECTION = "Car inspection",
   ABOUT = "App info",
+  DOCUMENTS = "Documents",
 }
 
 export const ViewRelations = {
@@ -25,5 +28,9 @@ export const ViewRelations = {
     icon: <CameraAltIcon />,
   },
   [ViewUrls.SCANNER]: { name: ViewNames.SCANNER, icon: <QrCodeScannerIcon /> },
+  [ViewUrls.DOCUMENTS]: {
+    name: ViewNames.DOCUMENTS,
+    icon: <ReceiptLongIcon />,
+  },
   [ViewUrls.ABOUT]: { name: ViewNames.ABOUT, icon: <InfoIcon /> },
 };

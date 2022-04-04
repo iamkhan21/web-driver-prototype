@@ -20,7 +20,18 @@ const SideMenu = () => {
     <Drawer
       open={state}
       variant="temporary"
-      PaperProps={{ style: { position: "absolute" } }}
+      anchor="top"
+      PaperProps={{
+        style: {
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          maxWidth: 500,
+          boxShadow: "none",
+          marginInline: "auto",
+        },
+      }}
       BackdropProps={{ style: { position: "absolute" } }}
       ModalProps={{
         container: document.getElementById("root"),

@@ -6,7 +6,7 @@ import {
 
 export function getGeolocation(): Promise<GeolocationCoordinates> {
   const options = {
-    enableHighAccuracy: false,
+    enableHighAccuracy: true,
     timeout: 20_000,
   };
 
