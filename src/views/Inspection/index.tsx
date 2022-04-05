@@ -176,8 +176,8 @@ const Inspection = () => {
                   {isVideoNeeded && damageVideo && (
                     <video
                       width="100%"
+                      style={{ maxHeight: "250px" }}
                       src={damageVideo}
-                      className="max-h-250px"
                       controls
                     />
                   )}
