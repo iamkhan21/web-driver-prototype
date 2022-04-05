@@ -5,8 +5,8 @@ specifiers:
   '@emotion/styled': 11.8.1
   '@mui/icons-material': 5.5.1
   '@mui/material': 5.5.3
-  '@testing-library/dom': 8.12.0
-  '@testing-library/jest-dom': 5.16.3
+  '@testing-library/dom': 8.13.0
+  '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 13.0.0
   '@testing-library/react-hooks': 7.0.2
   '@testing-library/user-event': 14.0.4
@@ -63,11 +63,11 @@ dependencies:
   react-router-dom: 6.3.0_react-dom@18.0.0+react@18.0.0
 
 devDependencies:
-  '@testing-library/dom': 8.12.0
-  '@testing-library/jest-dom': 5.16.3
+  '@testing-library/dom': 8.13.0
+  '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 13.0.0_react-dom@18.0.0+react@18.0.0
   '@testing-library/react-hooks': 7.0.2_react-dom@18.0.0+react@18.0.0
-  '@testing-library/user-event': 14.0.4_@testing-library+dom@8.12.0
+  '@testing-library/user-event': 14.0.4_@testing-library+dom@8.13.0
   '@types/mapbox-gl': 2.6.3
   '@types/node': 17.0.23
   '@types/react': 17.0.43
@@ -1972,8 +1972,8 @@ packages:
       string.prototype.matchall: 4.0.7
     dev: true
 
-  /@testing-library/dom/8.12.0:
-    resolution: {integrity: sha512-rBrJk5WjI02X1edtiUcZhgyhgBhiut96r5Jp8J5qktKdcvLcZpKDW8i2hkGMMItxrghjXuQ5AM6aE0imnFawaw==}
+  /@testing-library/dom/8.13.0:
+    resolution: {integrity: sha512-9VHgfIatKNXQNaZTtLnalIy0jNZzY35a4S3oi08YAt9Hv1VsfZ/DfA45lM8D/UhtHBGJ4/lGwp0PZkVndRkoOQ==}
     engines: {node: '>=12'}
     dependencies:
       '@babel/code-frame': 7.16.7
@@ -1986,8 +1986,8 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/jest-dom/5.16.3:
-    resolution: {integrity: sha512-u5DfKj4wfSt6akfndfu1eG06jsdyA/IUrlX2n3pyq5UXgXMhXY+NJb8eNK/7pqPWAhCKsCGWDdDO0zKMKAYkEA==}
+  /@testing-library/jest-dom/5.16.4:
+    resolution: {integrity: sha512-Gy+IoFutbMQcky0k+bqqumXZ1cTGswLsFqmNLzNdSKkU9KGV2u9oXhukCbbJ9/LRPKiqwxEE8VpV/+YZlfkPUA==}
     engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
     dependencies:
       '@babel/runtime': 7.17.8
@@ -2031,19 +2031,19 @@ packages:
       react-dom: ^18.0.0
     dependencies:
       '@babel/runtime': 7.17.8
-      '@testing-library/dom': 8.12.0
+      '@testing-library/dom': 8.13.0
       '@types/react-dom': 17.0.14
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
     dev: true
 
-  /@testing-library/user-event/14.0.4_@testing-library+dom@8.12.0:
+  /@testing-library/user-event/14.0.4_@testing-library+dom@8.13.0:
     resolution: {integrity: sha512-VBZe5lcUsmrQyOwIFvqOxLBoaTw1/Qy4Ek+VgmFYs719bs2SxUp42vbsb7ATlQDkHdj4OIQlucfpwxe5WoG1jA==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
-      '@testing-library/dom': 8.12.0
+      '@testing-library/dom': 8.13.0
     dev: true
 
   /@tootallnate/once/2.0.0:

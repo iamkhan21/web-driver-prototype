@@ -10,7 +10,7 @@ type Props = {
   onClose: () => void;
 };
 
-const Camera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
+const CustomCamera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
   const alive = useRef(true);
   const stream = useRef<MediaStream>();
   const video = useRef<HTMLVideoElement>(null);
@@ -106,4 +106,4 @@ const Camera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
   );
 };
 
-export default Camera;
+export default CustomCamera;

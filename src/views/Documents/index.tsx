@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { getFileUrl } from "@utils/file";
 
 const Documents = () => {
   const fileInput = useRef<HTMLInputElement>(null);
@@ -24,18 +23,10 @@ const Documents = () => {
   return (
     <article className="content">
       <h3>Documents Uploader</h3>
-      <section className="hidden">
-        <input
-          ref={fileInput}
-          onChange={onFileSelect}
-          type="file"
-          capture="environment"
-          accept="image/*"
-        />
-      </section>
+
       {file && (
         <section>
-          <img width="100%" src={getFileUrl(file)} alt="" />
+          <p>{file?.name}</p>
         </section>
       )}
       <section className="mt-auto sticky bottom-5 flex justify-end">
@@ -47,6 +38,15 @@ const Documents = () => {
         >
           <AddIcon />
         </Fab>
+      </section>
+
+      <section className="hidden">
+        <input
+          ref={fileInput}
+          onChange={onFileSelect}
+          type="file"
+          accept="application/pdf,application/vnd.ms-excel"
+        />
       </section>
     </article>
   );
