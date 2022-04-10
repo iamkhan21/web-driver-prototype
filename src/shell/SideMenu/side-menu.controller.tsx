@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 export type SideMenuStore = {
   state: boolean;
@@ -12,8 +12,11 @@ const SideMenuContext = React.createContext<SideMenuStore>({
   close: () => {},
 });
 
-// @ts-ignore
-export const SideMenuProvider: React.FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const SideMenuProvider: React.FC<Props> = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
