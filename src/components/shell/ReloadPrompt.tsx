@@ -40,7 +40,7 @@ function ReloadPrompt() {
   if (offlineReady)
     return (
       <Snackbar
-        open={true}
+        open
         autoHideDuration={5000}
         onClose={close}
         message="App ready to work offline"
@@ -60,7 +60,7 @@ function ReloadPrompt() {
   if (needRefresh) {
     return (
       <Dialog
-        open={true}
+        open
         onClose={close}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

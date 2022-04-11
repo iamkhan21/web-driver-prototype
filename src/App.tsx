@@ -8,6 +8,7 @@ import ReloadPrompt from "@components/shell/ReloadPrompt";
 import ErrorDialog from "@components/shell/ErrorDialog";
 import { initApp } from "@application/app";
 import { SideMenuProvider } from "@shell/SideMenu/side-menu.controller";
+import Network from "@components/shell/Network";
 import Geolocation from "@components/shell/Geolocation";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <ErrorDialog />
       </BrowserRouter>
       <Geolocation />
+      <Network />
       <ReloadPrompt />
     </>
   );
