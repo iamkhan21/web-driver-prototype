@@ -29,7 +29,7 @@ const Network = () => {
 
   if (isOnline === null) return null;
 
-  if (!isOnline) {
+  if (isOnline) {
     return (
       <Snackbar
         open
