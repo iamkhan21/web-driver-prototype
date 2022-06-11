@@ -74,7 +74,7 @@ const CustomCamera: FC<Props> = ({ onPhoto, onClose, maskImage }) => {
 
   return (
     <section className="fixed inset-0 z-1200 flex items-center justify-center overflow-y-hidden bg-black">
-      <video className="w-full" ref={video} autoPlay />
+      <video className="w-full" ref={video} autoPlay playsInline />
 
       {maskImage && (
         <section className="absolute inset-0 p-2 flex items-center justify-center">
