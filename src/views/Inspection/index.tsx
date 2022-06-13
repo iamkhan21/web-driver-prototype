@@ -5,6 +5,7 @@ import StepLabel from "@mui/material/StepLabel";
 import StepContent from "@mui/material/StepContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import steps from "./inspection_steps.json";
 import CustomCamera from "@components/shared/CustomCamera";
 import { getFileUrl } from "@utils/file";
 
@@ -16,48 +17,6 @@ type InspectionStep = {
   simpleCamera?: boolean;
   needSignature?: boolean;
 };
-
-const steps: InspectionStep[] = [
-  {
-    label: "Take a picture of the car from the front",
-    needPhoto: true,
-  },
-  {
-    label: "Take a picture of the car from the passenger side",
-    needPhoto: true,
-  },
-  {
-    label: "Take a picture of the car from behind",
-    needPhoto: true,
-  },
-  {
-    label: "Take a picture of the car from the driver side",
-    needPhoto: true,
-  },
-  {
-    label: "Take pictures of damage",
-    description:
-      "Take pictures of damage, if any, to the car (scratches, dents, cracks and chips in the windows).",
-    needPhoto: false,
-    simpleCamera: true,
-  },
-  {
-    label: "Take video of damage",
-    needVideo: false,
-  },
-  {
-    label: "Get a customer signature",
-    needSignature: true,
-  },
-  {
-    label: "Load the car on a tow truck",
-  },
-  {
-    label: "Make sure that the car is securely fastened",
-    description: `Check that all wheels of the vehicle are securely fastened with straps and that the straps are undamaged. 
-      Check that there are no parts on the vehicle that could be lost during towing.`,
-  },
-];
 
 const stepMask: Record<number, string> = {
   0: "/images/car-front.svg",
@@ -136,7 +95,7 @@ const Inspection = () => {
           you need to inspect the car to be picked up:
         </p>
         <Stepper activeStep={activeStep} orientation="vertical">
-          {steps.map((step, index) => {
+          {(steps as InspectionStep[]).map((step, index) => {
             const isPhotoNeeded = "needPhoto" in step;
             const isVideoNeeded = "needVideo" in step;
             const imgUrl = inspectionPhotos.current[index];

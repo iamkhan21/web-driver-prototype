@@ -10,8 +10,8 @@
     "update:cssdb": "npx browserslist@latest --update-db"
   },
   "dependencies": {
-    "@emotion/react": "11.9.0",
-    "@emotion/styled": "11.8.1",
+    "@emotion/react": "11.9.3",
+    "@emotion/styled": "11.9.3",
     "@mui/icons-material": "5.8.3",
     "@mui/material": "5.8.3",
     "await-of": "3.1.1",
@@ -51,11 +51,16 @@
     "prettier": "2.6.2",
     "simple-git-hooks": "2.8.0",
     "typescript": "4.7.3",
-    "unocss": "0.38.2",
+    "unocss": "0.39.0",
     "vite": "2.9.12",
     "vite-plugin-pwa": "0.12.0",
     "vitest": "0.14.2",
     "workbox-window": "6.5.3"
   },
-  "browserslist": ["last 2 version", "> 1%", "not dead", "not ie > 0"]
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "not dead",
+    "not ie > 0"
+  ]
 }
